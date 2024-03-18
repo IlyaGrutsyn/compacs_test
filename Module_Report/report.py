@@ -49,7 +49,7 @@ def my_click(image, confidence=0.5, action='left', region=None):
 
 
 # Пункты проверки согласно ПМИ
-'''
+
 def punkt_6_1():
     pointer = ''
 
@@ -326,7 +326,7 @@ def punkt_6_3():
         print('[+] Пункт 6.3 соответствует ПМИ!', datetime.now())
 
     time.sleep(5)
-'''
+
 
 def punkt_6_4():
     pointer = ''
@@ -393,7 +393,7 @@ def punkt_6_4():
     finally:
         time.sleep(5)
 
-    print('\t[debug] Поиск шаблона "Детальное остояние объектов", формирование шаблона, проверка шаблона на соответствие.')
+    print('\t[debug] Поиск шаблона "Детальное cостояние объектов", формирование шаблона, проверка шаблона на соответствие.')
     
     try:
         my_click('6_2.Shablon_Detalnoe_sostoyanie_obyectov.png', confidence=0.8, region=left_half)
@@ -416,11 +416,61 @@ def punkt_6_4():
     finally:
         time.sleep(5)
 
-    if p642 == 3:
+    print('\t[debug] Поиск шаблона "Объекты в определенном состоянии", формирование шаблона, проверка шаблона на соответствие.')
+    
+    try:
+        my_click('6_2.Shablon_Obyecty_v_opredelennom_sostoyanii.png', confidence=0.8, region=left_half)
+        time.sleep(5)
+        my_click('6_3.Knopka_Sformirovat.png', region=lower_half)
+        time.sleep(30)
+        my_click('6_4.Zagolovok_Detalnoe_sostoyanie_obyectov.png', region=upper_half)
+        time.sleep(5)
+        my_click('6_4.Vkladka_Obyecty_v_opredelennom_sostoyanii.png', confidence=0.8, region=quarter_3)
+        time.sleep(5)
+        my_click('6_4.Knopka_zakryt_vkladku.png', region=quarter_3)
+        time.sleep(5)
+        print('\t\t[info] Успешно!')
+        p642 += 1
+    except:
+        print('\t\t[error] Не найдено!')
+        pointer += ' 6.4.2'
+    finally:
+        time.sleep(5)
+
+
+    print('\t[debug] Поиск шаблона "Состояние диагностических признаков", формирование шаблона, проверка шаблона на соответствие.')
+    
+    try:
+        my_click('6_2.Shablon_Sostoyanie_diagnosticheskikh_priznakov.png', confidence=0.8, region=left_half)
+        time.sleep(5)
+        my_click('6_4.Checkbox_Sostoyanie_obyectov.png', region=quarter_2)
+        time.sleep(5)
+        my_click('6_4.Checkbox_Sostoyanie_diagnosticheskikh_priznakov.png', confidence=0.8, region=quarter_1)
+        time.sleep(5)
+        my_click('6_3.Knopka_Sformirovat.png', region=lower_half)
+        time.sleep(30)
+        my_click('6_4.Zagolovok_Sostoyanie_diagnosticheskikh_priznakov.png', region=upper_half)
+        time.sleep(5)
+        my_click('6_4.Vkladka_Sostoyanie_diagnosticheskikh_priznakov.png', confidence=0.8, region=quarter_3)
+        time.sleep(5)
+        my_click('6_4.Knopka_zakryt_vkladku.png', region=quarter_3)
+        time.sleep(5)
+        print('\t\t[info] Успешно!')
+        p642 += 1
+    except:
+        print('\t\t[error] Не найдено!')
+        pointer += ' 6.4.2'
+    finally:
+        time.sleep(5)
+    
+    
+    if p642 == 5:
         print('[+] Пункт 6.4.2 пройден успешно!', datetime.now())
     else:
         print('[+] Пункт 6.4.2 не пройден!', datetime.now())
 
+
+# Основная функция программы
 def main():
     start = datetime.now()
     print('[start] Начинается проверка модуля "Отчет".')
