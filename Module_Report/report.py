@@ -49,7 +49,7 @@ def my_click(image, confidence=0.5, action='left', region=None):
 
 
 # Пункты проверки согласно ПМИ
-
+'''
 def punkt_6_1():
     pointer = ''
 
@@ -326,15 +326,109 @@ def punkt_6_3():
         print('[+] Пункт 6.3 соответствует ПМИ!', datetime.now())
 
     time.sleep(5)
+'''
 
+def punkt_6_4():
+    pointer = ''
+
+    print('[+] 6.4 Проверка формирования типовых шаблонов отчетов.', datetime.now())
+    print('[+] 6.4.1 Перейти во вкладку "Новые отчеты".', datetime.now())
+    print('\t[debug] Поиск кнопки "ОТЧЕТ".')
+    
+
+    try:
+        my_click('6_2.Knopka_Otchet.png')
+        time.sleep(5)
+        print('\t\t[info] Успешно!')
+    except:
+        print('\t\t[error] Не найдено!')
+        pointer += ' 6.4.1'
+    finally:
+        time.sleep(5)
+
+    print('[+] 6.4.2 Последовательно выбирать форму отчета и проверять ее соответствие форме отчета, приведенной в приложении 1.')
+    p642 = 0
+
+    print('\t[debug] Поиск шаблона "Объекты, требующие ремонта", формирование шаблона, проверка шаблона на соответствие.')
+    
+    try:
+        my_click('6_2.Shablon_Obyecty_trebuyushchie_remonta.png', region=left_half)
+        time.sleep(5)
+        my_click('6_3.Knopka_Sformirovat.png', region=lower_half)
+        time.sleep(30)
+        my_click('6_4.Zagolovok_Obyecty_trebuyushchie_remonta.png', region=upper_half)
+        time.sleep(5)
+        my_click('6_4.Vkladka_Obyecty_trebuyushchie_remonta.png', region=quarter_3)
+        time.sleep(5)
+        my_click('6_4.Knopka_zakryt_vkladku.png', region=quarter_3)
+        time.sleep(5)
+        print('\t\t[info] Успешно!')
+        p642 += 1
+    except:
+        print('\t\t[error] Не найдено!')
+        pointer += ' 6.4.2'
+    finally:
+        time.sleep(5)
+
+    print('\t[debug] Поиск шаблона "Состояние объектов", формирование шаблона, проверка шаблона на соответствие.')
+    
+    try:
+        my_click('6_2.Shablon_Sostoyanie_obyectov.png', region=left_half)
+        time.sleep(5)
+        my_click('6_4.Checkbox_Sostoyanie_obyectov.png', region=upper_half)
+        time.sleep(5)
+        my_click('6_3.Knopka_Sformirovat.png', region=lower_half)
+        time.sleep(30)
+        my_click('6_4.Zagolovok_Sostoyanie_obyectov.png', region=upper_half)
+        time.sleep(5)
+        my_click('6_4.Vkladka_Sostoyanie_obyectov.png', confidence=0.8, region=quarter_3)
+        time.sleep(5)
+        my_click('6_4.Knopka_zakryt_vkladku.png', region=quarter_3)
+        time.sleep(5)
+        print('\t\t[info] Успешно!')
+        p642 += 1
+    except:
+        print('\t\t[error] Не найдено!')
+        pointer += ' 6.4.2'
+    finally:
+        time.sleep(5)
+
+    print('\t[debug] Поиск шаблона "Детальное остояние объектов", формирование шаблона, проверка шаблона на соответствие.')
+    
+    try:
+        my_click('6_2.Shablon_Detalnoe_sostoyanie_obyectov.png', confidence=0.8, region=left_half)
+        time.sleep(5)
+        my_click('6_4.Checkbox_Sostoyanie_obyectov.png', region=upper_half)
+        time.sleep(5)
+        my_click('6_3.Knopka_Sformirovat.png', region=lower_half)
+        time.sleep(30)
+        my_click('6_4.Zagolovok_Detalnoe_sostoyanie_obyectov.png', region=upper_half)
+        time.sleep(5)
+        my_click('6_4.Vkladka_Detalnoe_sostoyanie_obyectov.png', confidence=0.8, region=quarter_3)
+        time.sleep(5)
+        my_click('6_4.Knopka_zakryt_vkladku.png', region=quarter_3)
+        time.sleep(5)
+        print('\t\t[info] Успешно!')
+        p642 += 1
+    except:
+        print('\t\t[error] Не найдено!')
+        pointer += ' 6.4.2'
+    finally:
+        time.sleep(5)
+
+    if p642 == 3:
+        print('[+] Пункт 6.4.2 пройден успешно!', datetime.now())
+    else:
+        print('[+] Пункт 6.4.2 не пройден!', datetime.now())
 
 def main():
     start = datetime.now()
     print('[start] Начинается проверка модуля "Отчет".')
 
-    punkt_6_1()
-    punkt_6_2()
-    punkt_6_3()
+    #punkt_6_1()
+    #punkt_6_2()
+    #punkt_6_3()
+    punkt_6_4()
 
     end = datetime.now()
     print(f'[finish] Проверка модуля "Отчет" заняла - {end - start}.')
